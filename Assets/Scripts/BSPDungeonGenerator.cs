@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BSPDungeonGenerator : MonoBehaviour
 {
@@ -14,12 +16,24 @@ public class BSPDungeonGenerator : MonoBehaviour
     public GameObject roomPrefab;
     public GameObject stairPrefab;
 
+    [Header("NavMesh")]
+    public NavMeshSurface navMeshSurface;
+
     private List<List<RectInt>> allFloorsRooms = new();
 
     void Start()
     {
         GenerateMultiFloorDungeon();
         ConnectFloorsWithStairs();
+
+        if (navMeshSurface != null)
+        {
+            navMeshSurface.BuildNavMesh();
+        }
+        else
+        {
+            Debug.LogWarning("NavMeshSurface reference not assigned!");
+        }
     }
 
     void GenerateMultiFloorDungeon()
@@ -85,10 +99,9 @@ public class BSPDungeonGenerator : MonoBehaviour
             RectInt fromRoom = current[Random.Range(0, current.Count)];
             RectInt toRoom = above[Random.Range(0, above.Count)];
 
-            // Place stair in center of lower room
             Vector3 stairPos = new Vector3(
                 fromRoom.x + fromRoom.width / 2f,
-                floor * floorHeightSpacing + 1.5f, // height offset
+                floor * floorHeightSpacing + 1.5f,
                 fromRoom.y + fromRoom.height / 2f
             );
 
