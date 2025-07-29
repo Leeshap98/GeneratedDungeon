@@ -473,7 +473,10 @@ MonoBehaviour:
   dungeonWidth: 50
   dungeonHeight: 50
   maxSplitDepth: 4
+  numberOfFloors: 3
+  floorHeightSpacing: 10
   roomPrefab: {fileID: 8259924448852693525, guid: 24ae8ac512601e14091e739efd01fc69, type: 3}
+  stairPrefab: {fileID: 6688517798982476589, guid: 9aedf3aedbf812c4abf9b6a051904238, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
