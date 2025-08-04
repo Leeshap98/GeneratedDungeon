@@ -12,6 +12,15 @@ public class BSPDungeonGenerator : MonoBehaviour
     public int numberOfFloors = 3;
     public float floorHeightSpacing = 10f;
 
+    [Header("Room Size Settings")]
+    public int minRoomWidth = 6;
+    public int maxRoomWidth = 15;
+    public int minRoomHeight = 6;
+    public int maxRoomHeight = 15;
+
+    [Header("Corridor Settings")]
+    public int corridorWidth = 2;
+
     [Header("Prefabs")]
     public GameObject roomPrefab;
     public GameObject stairPrefab;
@@ -59,9 +68,16 @@ public class BSPDungeonGenerator : MonoBehaviour
 
     void SplitAndGenerate(RectInt area, int depth, List<RectInt> roomList)
     {
-        if (depth >= maxSplitDepth || area.width < 10 || area.height < 10)
+        if (depth >= maxSplitDepth || area.width < maxRoomWidth * 2 || area.height < maxRoomHeight * 2)
         {
-            roomList.Add(area);
+            int roomWidth = Mathf.Clamp(Random.Range(minRoomWidth, maxRoomWidth + 1), 1, area.width);
+            int roomHeight = Mathf.Clamp(Random.Range(minRoomHeight, maxRoomHeight + 1), 1, area.height);
+
+            int roomX = area.x + Random.Range(0, area.width - roomWidth);
+            int roomY = area.y + Random.Range(0, area.height - roomHeight);
+
+            RectInt room = new RectInt(roomX, roomY, roomWidth, roomHeight);
+            roomList.Add(room);
             return;
         }
 
@@ -71,17 +87,17 @@ public class BSPDungeonGenerator : MonoBehaviour
 
         if (splitHorizontally)
         {
-            int split = Random.Range(10, area.height - 10);
-            RectInt top = new RectInt(area.x, area.y + split, area.width, area.height - split);
+            int split = Random.Range(maxRoomHeight, area.height - maxRoomHeight);
+            RectInt top = new RectInt(area.x, area.y + split + corridorWidth, area.width, area.height - split - corridorWidth);
             RectInt bottom = new RectInt(area.x, area.y, area.width, split);
             SplitAndGenerate(top, depth + 1, roomList);
             SplitAndGenerate(bottom, depth + 1, roomList);
         }
         else
         {
-            int split = Random.Range(10, area.width - 10);
+            int split = Random.Range(maxRoomWidth, area.width - maxRoomWidth);
             RectInt left = new RectInt(area.x, area.y, split, area.height);
-            RectInt right = new RectInt(area.x + split, area.y, area.width - split, area.height);
+            RectInt right = new RectInt(area.x + split + corridorWidth, area.y, area.width - split - corridorWidth, area.height);
             SplitAndGenerate(left, depth + 1, roomList);
             SplitAndGenerate(right, depth + 1, roomList);
         }
