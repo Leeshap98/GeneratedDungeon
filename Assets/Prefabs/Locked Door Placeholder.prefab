@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4561997775346667824}
   - component: {fileID: 2206494447351510901}
   - component: {fileID: 2382327355311267739}
+  - component: {fileID: -4831640880852264167}
+  - component: {fileID: 7663449487511405783}
   m_Layer: 0
   m_Name: Locked Door Placeholder
   m_TagString: Untagged
@@ -107,4 +109,42 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4831640880852264167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5291402047420812881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c851d3f0704684e9dd2bc8cc2ae46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockingCollider: {fileID: 2382327355311267739}
+  sensorTrigger: {fileID: 7663449487511405783}
+  visuals:
+  - {fileID: 2206494447351510901}
+  destroyOnOpen: 1
+--- !u!65 &7663449487511405783
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5291402047420812881}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
