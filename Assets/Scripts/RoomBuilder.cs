@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomBuilder : MonoBehaviour
 {
-    public GameObject floorPrefab;     // e.g., Tile_A (4x4 units)
+    /*public GameObject floorPrefab;     // e.g., Tile_A (4x4 units)
     public GameObject wallPrefab;      // e.g., Wall_A (4 units long)
 
     public Vector2Int roomSize = new Vector2Int(4, 4); // Width x Depth in tiles
@@ -59,5 +59,5 @@ public class RoomBuilder : MonoBehaviour
             Vector3 pos = origin + new Vector3(width * tileSize, 0, z * tileSize);
             Instantiate(wallPrefab, pos, Quaternion.Euler(0, 90, 0), transform);
         }
-    }
+    }*/
 }

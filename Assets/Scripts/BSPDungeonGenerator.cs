@@ -18,12 +18,17 @@ public class BSPDungeonGenerator : MonoBehaviour
     public int minRoomHeight = 6;
     public int maxRoomHeight = 15;
 
+    [Header("Walls")]
+    public float wallHeight = 3f;
+    public float wallThickness = 0.2f;
+    
     [Header("Corridor Settings")]
     public int corridorWidth = 2;
 
     [Header("Prefabs")]
     public GameObject roomPrefab;
     public GameObject stairPrefab;
+    public GameObject wallPrefab;
 
     [Header("NavMesh")]
     public NavMeshSurface navMeshSurface;
@@ -47,6 +52,8 @@ public class BSPDungeonGenerator : MonoBehaviour
 
     void GenerateMultiFloorDungeon()
     {
+        RoomDecorator decorator = GetComponent<RoomDecorator>();
+
         for (int floor = 0; floor < numberOfFloors; floor++)
         {
             List<RectInt> currentFloorRooms = new();
@@ -54,14 +61,30 @@ public class BSPDungeonGenerator : MonoBehaviour
             SplitAndGenerate(rootBounds, 0, currentFloorRooms);
             allFloorsRooms.Add(currentFloorRooms);
 
-            foreach (RectInt room in currentFloorRooms)
+            for (int i = 0; i < currentFloorRooms.Count; i++)
             {
+                RectInt room = currentFloorRooms[i];
                 Vector3 roomPos = new Vector3(room.x + room.width / 2f, floor * floorHeightSpacing, room.y + room.height / 2f);
                 Vector3 roomSize = new Vector3(room.width, 1, room.height);
 
                 GameObject roomObj = Instantiate(roomPrefab, roomPos, Quaternion.identity, transform);
                 roomObj.transform.localScale = roomSize;
-                roomObj.name = $"Floor {floor} Room";
+                roomObj.name = $"Floor {floor} Room {i}";
+
+                // Add RoomData
+                RoomData rd = roomObj.AddComponent<RoomData>();
+                RoomType type = RoomType.Normal;
+
+                if (floor == 0 && i == 0) type = RoomType.Start;
+                else if (floor == 0 && i == 1) type = RoomType.Key;
+                else if (floor == 0 && i == 2) type = RoomType.Locked;
+
+                rd.Init(type, roomPos, roomSize);
+
+                if (decorator != null)
+                    decorator.Decorate(rd);
+                
+                BuildRoomWalls(room, roomPos, floor * floorHeightSpacing);
             }
         }
     }
@@ -124,4 +147,33 @@ public class BSPDungeonGenerator : MonoBehaviour
             Instantiate(stairPrefab, stairPos, Quaternion.identity, transform);
         }
     }
+    void BuildRoomWalls(RectInt room, Vector3 roomCenter, float floorY)
+    {
+        if (wallPrefab == null) return;
+
+        // Room extents
+        float halfW = room.width / 2f;
+        float halfH = room.height / 2f;
+
+        // Top wall
+        Vector3 topPos = new Vector3(roomCenter.x, floorY + wallHeight / 2f, roomCenter.z + halfH);
+        GameObject topWall = Instantiate(wallPrefab, topPos, Quaternion.identity, transform);
+        topWall.transform.localScale = new Vector3(room.width, wallHeight, wallThickness);
+
+        // Bottom wall
+        Vector3 bottomPos = new Vector3(roomCenter.x, floorY + wallHeight / 2f, roomCenter.z - halfH);
+        GameObject bottomWall = Instantiate(wallPrefab, bottomPos, Quaternion.identity, transform);
+        bottomWall.transform.localScale = new Vector3(room.width, wallHeight, wallThickness);
+
+        // Left wall
+        Vector3 leftPos = new Vector3(roomCenter.x - halfW, floorY + wallHeight / 2f, roomCenter.z);
+        GameObject leftWall = Instantiate(wallPrefab, leftPos, Quaternion.identity, transform);
+        leftWall.transform.localScale = new Vector3(wallThickness, wallHeight, room.height);
+
+        // Right wall
+        Vector3 rightPos = new Vector3(roomCenter.x + halfW, floorY + wallHeight / 2f, roomCenter.z);
+        GameObject rightWall = Instantiate(wallPrefab, rightPos, Quaternion.identity, transform);
+        rightWall.transform.localScale = new Vector3(wallThickness, wallHeight, room.height);
+    }
+
 }

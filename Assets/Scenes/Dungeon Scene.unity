@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &9084220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,10 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def42679f655ab149b16bae64894bde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 795165706614100933, guid: c863f656782d099438e2f1ba789301c8, type: 3}
-  wallPrefab: {fileID: 3591644860445115680, guid: a55e8b944b49e774899ecb13192840e5, type: 3}
-  roomSize: {x: 4, y: 4}
-  tileSize: 4
 --- !u!4 &9084221
 Transform:
   m_ObjectHideFlags: 0
@@ -729,7 +725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1884265792
 Transform:
   m_ObjectHideFlags: 0
@@ -766,9 +762,12 @@ MonoBehaviour:
   maxRoomWidth: 15
   minRoomHeight: 6
   maxRoomHeight: 15
+  wallHeight: 3
+  wallThickness: 0.2
   corridorWidth: 2
   roomPrefab: {fileID: 8259924448852693525, guid: 24ae8ac512601e14091e739efd01fc69, type: 3}
   stairPrefab: {fileID: 6688517798982476589, guid: 9aedf3aedbf812c4abf9b6a051904238, type: 3}
+  wallPrefab: {fileID: 8259924448852693525, guid: 8a9e876ee3a1d3c4bae91f17a9c31b1e, type: 3}
   navMeshSurface: {fileID: 1884265795}
 --- !u!114 &1884265794
 MonoBehaviour:

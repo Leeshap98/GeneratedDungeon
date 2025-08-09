@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 2441916022333505276}
   - component: {fileID: 2603952582459192748}
   - component: {fileID: 7729430646457832882}
-  - component: {fileID: 901262685200368608}
-  - component: {fileID: 8451347045374899262}
   m_Layer: 0
-  m_Name: Room Placeholder
+  m_Name: Wall Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8259924448852693525}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 10, y: 0.2, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &2441916022333505276
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -67,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd588bac37815ae4ca6071cd0570f241, type: 2}
+  - {fileID: 2100000, guid: e63a52bb530d29e469303bbd87ab36a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,34 +108,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &901262685200368608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8259924448852693525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de749d0666f98749aaca25ede59321e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomType: 0
-  center: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0, z: 0}
---- !u!114 &8451347045374899262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8259924448852693525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f9c1a5d80919944b9b5d6f3ea95db5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyPrefab: {fileID: 729470567025060464, guid: 15e26355c84f21541a0a69b8d4a56d2b, type: 3}
-  lockedDoorPrefab: {fileID: 5291402047420812881, guid: 79e8941726479f443a7f51b96c12de83, type: 3}
-  startPropPrefab: {fileID: 5091609102185603593, guid: 5bd04102c9eebcd4598fa4b36deee731, type: 3}
-  normalPropPrefab: {fileID: 3666726974908055889, guid: ac224b654d7600a49b653713b286dbd2, type: 3}
