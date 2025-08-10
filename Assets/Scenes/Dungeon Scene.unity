@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 210063097}
   - component: {fileID: 210063100}
   - component: {fileID: 210063101}
+  - component: {fileID: 210063102}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -292,6 +293,28 @@ MonoBehaviour:
   speed: 5
   mouseSensitivity: 2
   cameraTransform: {fileID: 330585546}
+--- !u!195 &210063102
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210063096}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,12 +785,20 @@ MonoBehaviour:
   maxRoomWidth: 15
   minRoomHeight: 6
   maxRoomHeight: 15
+  corridorPrefab: {fileID: 8259924448852693525, guid: 98f19c600017c744aa5ac04fba1af859, type: 3}
+  corridorWorldWidth: 2
+  wallPrefab: {fileID: 8259924448852693525, guid: 8a9e876ee3a1d3c4bae91f17a9c31b1e, type: 3}
   wallHeight: 3
   wallThickness: 0.2
+  doorwayWidth: 2
+  lockedDoorPrefab: {fileID: 5291402047420812881, guid: 79e8941726479f443a7f51b96c12de83, type: 3}
+  doorThickness: 0.18
+  doorHeight: 2.3
   corridorWidth: 2
   roomPrefab: {fileID: 8259924448852693525, guid: 24ae8ac512601e14091e739efd01fc69, type: 3}
   stairPrefab: {fileID: 6688517798982476589, guid: 9aedf3aedbf812c4abf9b6a051904238, type: 3}
-  wallPrefab: {fileID: 8259924448852693525, guid: 8a9e876ee3a1d3c4bae91f17a9c31b1e, type: 3}
+  player: {fileID: 210063099}
+  playerSpawnYOffset: 1
   navMeshSurface: {fileID: 1884265795}
 --- !u!114 &1884265794
 MonoBehaviour:
@@ -800,7 +831,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 1

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2441916022333505276}
   - component: {fileID: 2603952582459192748}
   - component: {fileID: 7729430646457832882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Corridor Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
